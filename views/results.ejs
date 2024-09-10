@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Výsledky formuláře</title>
+</head>
+<body>
+    <h1>Výsledky formuláře</h1>
+    <div class="container">
+<table>
+        <tr>
+            <th>Datum</th>
+            <th>Čas</th>
+            <th>Jméno</th>
+            <th>Příjmení</th>
+            <th>Město</th>
+            <th>Ulice</th>
+            <th>Telefon</th>
+        </tr>
+        <% responses.forEach(function(response) { 
+            const date = new Date(response.timestamp);
+            const dateString = `${('0' + date.getDate()).slice(-2)}.${('0' + (date.getMonth() + 1)).slice(-2)}.${date.getFullYear()}`;
+            const timeString = `${('0' + date.getHours()).slice(-2)}:${('0' + date.getMinutes()).slice(-2)}:${('0' + date.getSeconds()).slice(-2)}`;
+        %>
+            <tr>
+                <td><%= dateString %></td>
+                <td><%= timeString %></td>
+                <td><%= response.name %></td>
+                <td><%= response.surname %></td>
+                <td><%= response.city %></td>
+                <td><%= response.street %></td>
+                <td><%= response.tel %></td>
+            </tr>
+        <% }); %>
+    </table> 
+    </div> 
+</body>
+</html>
